@@ -3,227 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Digital - Bagus & Afi</title>
+    <title>Wedding - Bagus & Afi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; margin: 0; }
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; background-color: #f1f5f9; margin:0; }
         .font-aesthetic { font-family: 'Great Vibes', cursive; }
-        .cover-hidden { opacity: 0; transform: scale(1.1); pointer-events: none; transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .fade-in-up { animation: fadeInUp 1.5s ease-out forwards; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        #penerima-tamu { transition: all 1s ease-in-out; }
-        .blur-bg { backdrop-filter: blur(8px); background-color: rgba(15, 23, 42, 0.8); }
+        .cover-hidden { opacity: 0; transform: translateY(-100%); pointer-events: none; transition: all 1s ease-in-out; }
+        #main-content:not(.hidden) { display: block; }
+        
+        /* Lightbox Overlay */
+        #image-modal { backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.9); transition: all 0.3s ease; }
+        .close-zoom {
+            position: absolute; top: 20px; right: 20px; background: white; color: black;
+            width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-weight: bold; cursor: pointer; z-index: 100;
+        }
     </style>
 </head>
-<body class="bg-slate-200 overflow-hidden" id="main-body">
+<body class="overflow-hidden" id="main-body">
 
-<div id="penerima-tamu" class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900 text-white text-center">
-        <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');"></div>
-        <div class="relative z-10 px-6 py-12 rounded-3xl border border-white/20 blur-bg mx-4 shadow-2xl max-w-sm">
-            <p class="uppercase tracking-[0.3em] text-[10px] mb-4 opacity-70 text-white">Special Invitation For</p>
-            <h2 id="nama-penerima-tamu" class="font-aesthetic text-4xl md:text-5xl mb-6 text-amber-200 text-white">Tamu Undangan</h2>
-            
-            <div class="mb-8">
-                <p class="text-[11px] leading-relaxed opacity-80 italic text-white">
-                    "Cinta tidak terlihat dengan mata, tetapi dengan hati. Dan di atas segalanya, cinta adalah janji yang dijaga selamanya."
+    <section id="cover" class="fixed inset-0 z-50 flex items-center justify-center bg-cover bg-center transition-all duration-1000" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');">
+        <div class="text-center text-white px-6">
+            <p class="uppercase tracking-[0.3em] text-xs mb-4">The Wedding Of</p>
+            <h1 class="font-aesthetic text-6xl md:text-8xl mb-6">Bagus & Afi</h1>
+            <div class="max-w-md mx-auto mb-10">
+                <p class="text-xs md:text-sm italic leading-relaxed opacity-90 px-4">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..." <br><b>Qs. Ar-rum : 21</b>
                 </p>
-                <div class="w-8 h-[1px] bg-amber-200/50 mx-auto mt-4"></div>
             </div>
-
-            <p class="text-[10px] mb-8 opacity-60 leading-relaxed text-white uppercase tracking-widest">Kami mengundang Anda untuk merayakan momen bahagia kami.</p>
-            
-            <button onclick="bukaPenerima()" class="px-10 py-3 bg-white text-gray-900 rounded-full text-xs font-bold tracking-widest hover:bg-amber-100 transition-all shadow-lg text-black active:scale-95">
-                BUKA UNDANGAN
-            </button>
-        </div>
-    </div>
-
-    <audio id="musikUndangan" loop>
-        <source src="lagu pernikahan kita.mp3" type="audio/mpeg">
-    </audio>
-
-    <section id="cover" class="fixed inset-0 z-50 flex items-center justify-center bg-cover bg-center" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');">
-        <div class="text-center text-white px-4">
-            <p class="uppercase tracking-[0.3em] text-xs mb-6 opacity-80 text-white">The Wedding Of</p>
-            <h1 class="font-aesthetic text-6xl md:text-8xl mb-4 text-white">Bagus & Afi</h1>
-            <p class="mb-10 text-lg font-light text-slate-200">Sabtu, 13 Juni 2026</p>
-            <button onclick="bukaUndangan()" class="px-10 py-4 bg-white text-gray-800 rounded-full font-bold text-sm shadow-2xl transition-all active:scale-95 text-black">
-                Lihat Detail Acara
-            </button>
+            <button onclick="bukaUndangan()" class="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-xs tracking-widest shadow-2xl uppercase active:scale-95 transition-all">Lihat Detail Acara</button>
         </div>
     </section>
 
-    <main id="konten" class="hidden max-w-md mx-auto bg-white min-h-screen shadow-2xl relative overflow-x-hidden">
-        <div class="h-[400px] relative">
+    <audio id="musik" loop><source src="lagu pernikahan kita.mp3" type="audio/mpeg"></audio>
+
+    <main id="main-content" class="hidden max-w-md mx-auto bg-white shadow-2xl relative">
+        
+        <div class="h-[450px] relative overflow-hidden">
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
-            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent text-center flex flex-col justify-end pb-10">
+                <h2 class="font-aesthetic text-5xl text-slate-800">Bagus & Afi</h2>
+            </div>
         </div>
 
-        <div class="p-8 text-center -mt-10 relative z-10 bg-white rounded-t-[3rem]">
-    <div class="mb-8 opacity-50">
-        <svg class="w-12 h-12 mx-auto text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
-        </svg>
-    </div>
+        <section class="p-8 text-center">
+            <div class="mb-12" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400" class="w-24 h-24 mx-auto rounded-full border-2 border-slate-200 mb-4 object-cover">
+                <h3 class="font-aesthetic text-3xl">Afiatul Afida, S.Tr.Kom</h3>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Putri dari Bapak & Ibu Siapa</p>
+            </div>
+            <div class="font-aesthetic text-4xl text-slate-200 my-4" data-aos="zoom-in">&</div>
+            <div class="mb-12" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400" class="w-24 h-24 mx-auto rounded-full border-2 border-slate-200 mb-4 object-cover">
+                <h3 class="font-aesthetic text-3xl">Bagus Ramadhan, S.T</h3>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Putra dari Bapak & Ibu Siapa</p>
+            </div>
+        </section>
 
-    <h2 class="font-aesthetic text-5xl text-gray-700 mb-2">Assalamu'alaikum</h2>
-    <p class="text-[10px] tracking-[0.3em] text-gray-400 mb-10 uppercase">Momen Bahagia Kami</p>
-    
-    <div class="space-y-6 mb-12">
-        <div class="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-            <div class="absolute -top-4 -right-4 w-16 h-16 bg-slate-200/30 rounded-full group-hover:scale-110 transition-transform"></div>
+        <section class="relative p-12 text-white text-center bg-cover bg-fixed bg-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80');">
+            <h3 class="text-[10px] tracking-[0.4em] mb-8 uppercase opacity-70">Menuju Hari Bahagia</h3>
+            <div id="countdown" class="flex justify-center gap-4 mb-10">
+                <div><span id="days" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Hari</p></div>
+                <div><span id="hours" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Jam</p></div>
+                <div><span id="minutes" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Menit</p></div>
+                <div><span id="seconds" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Detik</p></div>
+            </div>
+            <button class="px-6 py-3 bg-white text-slate-900 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-xl">Save The Date</button>
+        </section>
+
+        <section class="p-8 bg-slate-50 overflow-hidden">
+            <h3 class="font-aesthetic text-4xl text-center mb-10" data-aos="fade-up">Love Story</h3>
+            <div class="border-l-2 border-slate-200 ml-4 pl-6 space-y-12 text-xs italic">
+                <div data-aos="fade-left" data-aos-delay="100">
+                    <h5 class="font-bold text-slate-800 not-italic text-sm">2020</h5>
+                    <p class="mt-2 text-slate-500">"Pertama kali mengenal satu sama lain di bangku perkuliahan..."</p>
+                </div>
+                <div data-aos="fade-left" data-aos-delay="300">
+                    <h5 class="font-bold text-slate-800 not-italic text-sm">2026</h5>
+                    <p class="mt-2 text-slate-500">"Memutuskan untuk melangkah ke jenjang yang lebih suci..."</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="p-4 mb-10">
+            <h3 class="font-aesthetic text-4xl text-center mb-8" data-aos="fade-up">Our Gallery</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400" 
+                     class="rounded-xl cursor-pointer hover:scale-105 transition duration-500 shadow-sm" data-aos="fade-up" data-aos-delay="100" onclick="zoomImg(this.src)">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400" 
+                     class="rounded-xl cursor-pointer hover:scale-105 transition duration-500 shadow-sm" data-aos="fade-up" data-aos-delay="200" onclick="zoomImg(this.src)">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=400" 
+                     class="rounded-xl col-span-2 h-56 object-cover cursor-pointer hover:scale-105 transition duration-500 shadow-sm" data-aos="fade-up" data-aos-delay="300" onclick="zoomImg(this.src)">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400" 
+                     class="rounded-xl cursor-pointer hover:scale-105 transition duration-500 shadow-sm" data-aos="fade-up" data-aos-delay="400" onclick="zoomImg(this.src)">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400" 
+                     class="rounded-xl cursor-pointer hover:scale-105 transition duration-500 shadow-sm" data-aos="fade-up" data-aos-delay="500" onclick="zoomImg(this.src)">
+            </div>
+        </section>
+
+        <section class="relative p-16 text-center text-white bg-cover bg-fixed bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800');">
+            <h3 class="font-aesthetic text-4xl mb-4">Wedding Gift</h3>
+            <p class="text-[10px] mb-8 leading-relaxed italic opacity-80 px-4">"Bagi yang ingin memberikan tanda kasih, dapat mengirimkan melalui fitur di bawah ini:"</p>
+            <button onclick="toggleGift()" class="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-[10px] tracking-widest uppercase active:scale-95 transition-all">Kirim Hadiah</button>
+        </section>
+
+        <section class="relative p-8 bg-cover bg-fixed bg-center min-h-screen" style="background-image: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800');">
+            <h3 class="font-aesthetic text-4xl text-center mb-4">Buku Tamu</h3>
+            <p class="text-[10px] text-center mb-8 italic text-slate-500 px-6">"Diharapkan Bapak/Ibu/Saudara/i untuk mengisi form yang ada dibawah ini:"</p>
             
-            <div class="relative z-10">
-                <span class="inline-block p-3 bg-white rounded-2xl shadow-sm mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </span>
-                <h3 class="font-bold text-gray-800 tracking-[0.2em] text-sm mb-2 uppercase">Akad Nikah</h3>
-                <div class="w-8 h-[1px] bg-slate-300 mx-auto mb-3"></div>
-                <p class="text-gray-600 text-sm font-medium">09.00 - 10.30 WIB</p>
-            </div>
-        </div>
+            <form id="form-undangan" class="space-y-4 mb-12 bg-white/60 p-6 rounded-3xl border border-white shadow-sm">
+                <input type="text" id="input-nama-otomatis" name="Nama" required placeholder="Nama Anda" class="w-full px-4 py-3 rounded-2xl border-none shadow-sm text-xs focus:ring-2 focus:ring-slate-300">
+                <select name="Kehadiran" class="w-full px-4 py-3 rounded-2xl border-none shadow-sm text-xs">
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+                <textarea name="Ucapan" required placeholder="Ucapan & Doa..." rows="4" class="w-full px-4 py-3 rounded-2xl border-none shadow-sm text-xs focus:ring-2 focus:ring-slate-300"></textarea>
+                <button type="submit" class="w-full py-4 bg-slate-800 text-white rounded-full font-bold text-[10px] tracking-widest uppercase">Kirim Ucapan</button>
+            </form>
 
-        <div class="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-            <div class="absolute -top-4 -right-4 w-16 h-16 bg-slate-200/30 rounded-full group-hover:scale-110 transition-transform"></div>
+            <div id="display-ucapan" class="space-y-4 max-h-[450px] overflow-y-auto pr-2 pb-12">
+                </div>
+        </section>
 
-            <div class="relative z-10">
-                <span class="inline-block p-3 bg-white rounded-2xl shadow-sm mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.703 2.703 0 00-3 0 2.703 2.703 0 00-3 0 2.703 2.703 0 00-3 0 2.701 2.701 0 00-1.5-.454M9 16v2m3-6v6m3-8v8m9-1a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h14a1 1 0 011 1v10z" />
-                    </svg>
-                </span>
-                <h3 class="font-bold text-gray-800 tracking-[0.2em] text-sm mb-2 uppercase">Resepsi Pernikahan</h3>
-                <div class="w-8 h-[1px] bg-slate-300 mx-auto mb-3"></div>
-                <p class="text-gray-600 text-sm font-medium">11.00 - Selesai</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-12 px-4 py-10 bg-slate-900 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <circle cx="0" cy="0" r="40" fill="white"/>
-                <circle cx="100" cy="100" r="30" fill="white"/>
-            </svg>
-        </div>
-
-        <div class="relative z-10">
-            <p class="text-[10px] uppercase tracking-[0.4em] mb-4 text-slate-400">Tempat Acara</p>
-            <p class="text-lg font-aesthetic mb-2 text-amber-200">Kediaman Mempelai Wanita</p>
-            <p class="text-xs text-slate-300 italic mb-8 leading-relaxed">
-                Linggapura, Kec. Tonjong, Kab. Brebes<br>Jawa Tengah
+        <footer class="p-12 text-center bg-white border-t border-slate-100">
+            <p class="text-[10px] text-slate-400 italic mb-10 leading-relaxed px-6">
+                Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do’a restu kepada kami.
             </p>
-            <a href="https://maps.google.com/?cid=4031168423583193821&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ5" target="_blank" 
-               class="inline-flex items-center px-10 py-4 bg-white text-gray-900 rounded-full text-[10px] font-bold tracking-widest hover:bg-amber-100 transition-all shadow-xl active:scale-95 group">
-                <span class="mr-2">PETUNJUK LOKASI</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-            </a>
-        </div>
-
-            <div class="mt-16 mb-16">
-                <h3 class="font-aesthetic text-4xl text-gray-700 mb-8 text-black">Our Gallery</h3>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="col-span-2 h-64 overflow-hidden rounded-2xl shadow-md">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="h-40 overflow-hidden rounded-2xl shadow-md">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="h-40 overflow-hidden rounded-2xl shadow-md">
-                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
+            <h4 class="font-aesthetic text-4xl text-slate-800 mb-8">Bagus & Afi</h4>
+            
+            <div class="mt-10 pt-10 border-t border-slate-50 text-slate-400">
+                <p class="text-[8px] uppercase tracking-widest mb-4 italic">Created with Love by Cahya Chaira Putri</p>
+                <div class="flex justify-center gap-6">
+                    <a href="https://instagram.com/USERNAME_KAMU" target="_blank" class="text-slate-400 hover:text-pink-500 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://wa.me/NOMER_WA_KAMU" target="_blank" class="text-slate-400 hover:text-green-500 transition-colors">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
                 </div>
             </div>
-
-            <div class="mt-16 p-8 bg-slate-50 rounded-3xl shadow-inner mb-10 text-center">
-                <h3 class="font-aesthetic text-4xl text-gray-700 mb-6 text-black">Buku Tamu</h3>
-                <form id="form-undangan">
-                    <div class="mb-4 text-left">
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">Nama</label>
-                        <input type="text" id="input-nama-otomatis" name="Nama" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none text-black">
-                    </div>
-                    <div class="mb-4 text-left">
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">Kehadiran</label>
-                        <select name="Kehadiran" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none text-black">
-                            <option value="Hadir">Hadir</option>
-                            <option value="Tidak Hadir">Tidak Hadir</option>
-                            <option value="Masih Ragu">Masih Ragu</option>
-                        </select>
-                    </div>
-                    <div class="mb-6 text-left">
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">Ucapan & Doa</label>
-                        <textarea name="Ucapan" rows="3" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none text-black"></textarea>
-                    </div>
-                    <button type="submit" id="btn-kirim" class="w-full py-4 bg-gray-800 text-white rounded-full font-bold text-sm tracking-widest hover:bg-black transition-all">
-                        KIRIM UCAPAN
-                    </button>
-                </form>
-                <div id="pesan-sukses" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-xl text-sm italic">
-                    Terima kasih atas ucapan dan doanya!
-                </div>
-            </div>
-        </div>
-
-        <footer class="p-10 bg-slate-50 text-center">
-            <p class="font-aesthetic text-3xl text-gray-400">Bagus & Afi</p>
-            <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-4 italic">~ See You On Our Special Day ~</p>
         </footer>
     </main>
 
+    <div id="gift-modal" class="hidden fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6" onclick="toggleGift()">
+        <div class="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center relative" onclick="event.stopPropagation()">
+            <h4 class="font-bold text-slate-800 mb-6 uppercase text-xs tracking-widest">Digital Gift</h4>
+            <div class="bg-slate-50 p-6 rounded-3xl mb-6 border border-slate-100">
+                <p class="text-[9px] font-bold text-slate-400 uppercase mb-2">Bank BCA</p>
+                <p id="norek" class="text-lg font-bold tracking-wider">1234567890</p>
+                <p class="text-[10px] text-slate-500">a.n Bagus Ramadhan</p>
+                <button onclick="copyNorek()" class="mt-4 text-[9px] text-blue-500 font-bold uppercase tracking-widest border-b border-blue-200">Salin Rekening</button>
+            </div>
+            <button onclick="toggleGift()" class="w-full py-4 bg-slate-100 text-slate-500 rounded-full text-[9px] font-bold uppercase tracking-widest">Tutup</button>
+        </div>
+    </div>
+
+    <div id="image-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="close-zoom" onclick="closeZoom()">✕</div>
+        <div class="absolute inset-0" onclick="closeZoom()"></div>
+        <img id="zoomed-img" src="" class="relative z-10 max-w-full max-h-[85vh] rounded-2xl shadow-2xl transition-transform duration-300 scale-95">
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const namaTamu = urlParams.get('to') || 'Tamu Undangan';
-
-        window.onload = () => {
-            document.getElementById('nama-penerima-tamu').innerText = namaTamu;
-            document.getElementById('input-nama-otomatis').value = namaTamu;
-        };
-
-        function bukaPenerima() {
-            const overlay = document.getElementById('penerima-tamu');
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.classList.add('hidden'); }, 1000);
-        }
+        AOS.init({ duration: 1000, once: true });
 
         function bukaUndangan() {
-            const musik = document.getElementById('musikUndangan');
-            if(musik) { musik.volume = 0.5; musik.play().catch(e => console.log("Audio block")); }
-
-            document.getElementById('cover').classList.add('cover-hidden');
-            const konten = document.getElementById('konten');
-            konten.classList.remove('hidden');
-            
-            document.getElementById('main-body').classList.remove('overflow-hidden');
+            const cover = document.getElementById('cover');
+            cover.classList.add('cover-hidden');
+            document.getElementById('main-content').classList.remove('hidden');
             document.getElementById('main-body').style.overflow = 'auto';
-
-            setTimeout(() => { document.getElementById('cover').classList.add('hidden'); }, 1500);
+            document.getElementById('musik').play().catch(() => {});
+            setTimeout(() => { cover.classList.add('hidden'); }, 1000);
         }
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxIQKMz-zLnRHrrQ0Pk2CO5NROah6wY_URRvDKTSo-W9ZekJWEGnG8NnBszTPz0S78X/exec';
+        // Countdown
+        const weddingDate = new Date("June 13, 2026 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const gap = weddingDate - now;
+            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('minutes').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000);
+        }, 1000);
+
+        // Zoom Logic
+        function zoomImg(src) {
+            const modal = document.getElementById('image-modal');
+            const img = document.getElementById('zoomed-img');
+            img.src = src;
+            modal.classList.remove('hidden');
+            setTimeout(() => { img.classList.replace('scale-95', 'scale-100'); }, 10);
+        }
+        function closeZoom() {
+            const modal = document.getElementById('image-modal');
+            const img = document.getElementById('zoomed-img');
+            img.classList.replace('scale-100', 'scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 200);
+        }
+
+        // Gift & Copy
+        function toggleGift() { document.getElementById('gift-modal').classList.toggle('hidden'); }
+        function copyNorek() {
+            navigator.clipboard.writeText("1234567890");
+            alert("Nomor rekening berhasil disalin!");
+        }
+
+        // Buku Tamu & Balas
         const form = document.getElementById('form-undangan');
-        const btnKirim = document.getElementById('btn-kirim');
-        const pesanSukses = document.getElementById('pesan-sukses');
+        const display = document.getElementById('display-ucapan');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            btnKirim.disabled = true;
-            btnKirim.innerText = 'Mengirim...';
+            const data = new FormData(form);
+            const nama = data.get('Nama');
+            const ucapan = data.get('Ucapan');
             
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                btnKirim.classList.add('hidden');
-                pesanSukses.classList.remove('hidden');
-                form.reset();
-            })
-            .catch(error => { alert('Gagal kirim ucapan.'); btnKirim.disabled = false; btnKirim.innerText = 'KIRIM UCAPAN'; });
+            const html = `
+                <div class="bg-white/90 p-6 rounded-3xl shadow-sm border border-white" data-aos="fade-up">
+                    <p class="font-bold text-[11px] text-slate-800 uppercase tracking-widest">${nama}</p>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed italic">"${ucapan}"</p>
+                    <div class="mt-4"><button class="text-[9px] text-blue-500 font-bold uppercase tracking-widest" onclick="toggleReply(this)">Balas</button></div>
+                    <div class="hidden mt-3 pl-4 border-l-2 border-slate-100">
+                        <input type="text" placeholder="Tulis balasan..." class="w-full text-[10px] bg-slate-50 border-none rounded-xl py-2 px-3">
+                    </div>
+                </div>`;
+            display.insertAdjacentHTML('afterbegin', html);
+            form.reset();
         });
+
+        function toggleReply(btn) {
+            const box = btn.parentElement.nextElementSibling;
+            box.classList.toggle('hidden');
+        }
+
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('input-nama-otomatis').value = params.get('to') || 'Tamu Undangan';
+        };
     </script>
 </body>
 </html>
