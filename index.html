@@ -363,20 +363,27 @@
     AOS.init({ duration: 1000, once: true });
 
     function bukaUndangan() {
+        const audio = document.getElementById('musik');
+        
+        // Sembunyikan cover
         document.getElementById('cover').classList.add('cover-hidden');
         document.getElementById('main-content').classList.remove('hidden');
         document.getElementById('main-body').style.overflow = 'auto';
         
-        document.getElementById('musik').play().catch(() => {});
+        // --- SET MUSIK LANGSUNG KE DETIK 15 ---
+        audio.currentTime = 12; 
+        audio.play().catch(() => {
+            console.log("Autoplay diblokir browser, musik akan jalan setelah interaksi");
+        });
         
-        // KUNCINYA DI SINI: Kasih delay dikit biar browser render dulu, baru AOS scan
+        // Refresh AOS dan Load Komentar
         setTimeout(() => { 
             AOS.refresh(); 
-            window.dispatchEvent(new Event('scroll')); // Maksa pemicu animasi jalan
+            window.dispatchEvent(new Event('scroll')); 
             loadComments(); 
         }, 500); 
     }
-
+    
     window.onload = () => {
         const params = new URLSearchParams(window.location.search);
         const namaTamu = params.get('to');
