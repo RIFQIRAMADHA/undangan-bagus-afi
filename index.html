@@ -362,6 +362,28 @@
     // Inisialisasi AOS
     AOS.init({ duration: 1000, once: true });
 
+    // 2. FUNGSI TANGKAP NAMA DARI URL (Jalankan langsung saat halaman dibaca)
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const namaTamu = urlParams.get('to');
+
+        if (namaTamu) {
+            const namaBersih = decodeURIComponent(namaTamu.replace(/\+/g, ' '));
+            
+            // Ganti nama di Cover
+            const elemenNamaCover = document.getElementById('nama-tamu-cover');
+            if (elemenNamaCover) {
+                elemenNamaCover.innerText = namaBersih;
+            }
+
+            // Isi otomatis di form Buku Tamu
+            const inputNamaForm = document.getElementById('input-nama-otomatis');
+            if (inputNamaForm) {
+                inputNamaForm.value = namaBersih;
+            }
+        }
+    });
+
     function bukaUndangan() {
         const audio = document.getElementById('musik');
         
@@ -383,31 +405,6 @@
             loadComments(); 
         }, 500); 
     }
-    
-    window.onload = () => {
-        const params = new URLSearchParams(window.location.search);
-        const namaTamu = params.get('to');
-    
-        if (namaTamu) {
-            // Membersihkan nama dari tanda + atau %20
-            const namaBersih = decodeURIComponent(namaTamu.replace(/\+/g, ' '));
-            
-            // 1. Tampilkan nama di Cover
-            const elemenNamaCover = document.getElementById('nama-tamu-cover');
-            if (elemenNamaCover) {
-                elemenNamaCover.innerText = namaBersih;
-            }
-            
-            // 2. Isi nama otomatis di Form Buku Tamu
-            const inputNama = document.getElementById('input-nama-otomatis');
-            if (inputNama) {
-                inputNama.value = namaBersih;
-            }
-        } else {
-            // Jika tidak ada parameter 'to', biarkan default
-            document.getElementById('nama-tamu-cover').innerText = 'Tamu Undangan';
-        }
-    };
 
     // 1. FUNGSI SALIN NOMER (TRIK SAKTI JALAN DI HP)
     function salinNomer(nomernya, namaBanknya) {
