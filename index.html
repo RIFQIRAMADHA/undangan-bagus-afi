@@ -6,14 +6,19 @@
     <title>The Wedding Of Bagus & Afi</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; background-color: #f1f5f9; margin: 0; overflow-x: hidden; }
-        .font-aesthetic { font-family: 'Great Vibes', cursive; }
+        /* Font Utama: Cormorant Garamond (Klasik) */
+        body { font-family: 'Cormorant Garamond', serif; scroll-behavior: smooth; background-color: #f1f5f9; margin: 0; overflow-x: hidden; color: #1e293b; }
+        
+        /* Font Latin: Pinyon Script (Elegan) */
+        .font-latin { font-family: 'Pinyon Script', cursive; }
+        
         .cover-hidden { opacity: 0; transform: translateY(-100%); pointer-events: none; transition: all 1s ease-in-out; }
         #main-content:not(.hidden) { display: block; }
+        
         #image-modal { backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.9); transition: all 0.3s ease; }
         .close-zoom {
             position: absolute; top: 20px; right: 20px; background: white; color: black;
@@ -24,187 +29,315 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         section { overflow: hidden; }
+
+        /* Styling tambahan biar teks latin makin cantik */
+        .latin-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body class="overflow-hidden" id="main-body">
 
     <section id="cover" class="fixed inset-0 z-50 flex items-center justify-center bg-cover bg-center transition-all duration-1000" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');">
+         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('DSC00055.jpg');">
         <div class="text-center text-white px-6">
-            <p class="uppercase tracking-[0.3em] text-[10px] mb-4 opacity-80" data-aos="fade-down">The Wedding Of</p>
-            <h1 class="font-aesthetic text-6xl md:text-8xl mb-6" data-aos="zoom-in">Bagus & Afi</h1>
+            <p class="uppercase tracking-[0.4em] text-[10px] mb-4 opacity-80" data-aos="fade-down" style="font-family: 'Montserrat', sans-serif;">The Wedding Of</p>
+            <h1 class="font-latin text-7xl md:text-9xl mb-6 latin-shadow text-amber-100" data-aos="zoom-in">Bagus & Afi</h1>
             <div class="max-w-md mx-auto mb-10">
-                <p class="text-xs italic leading-relaxed opacity-90 px-4" data-aos="fade-up">
-                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu..." <br><b>Qs. Ar-rum : 21</b>
+                <p class="text-lg italic leading-relaxed opacity-90 px-4" data-aos="fade-up">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu..." <br><b class="font-sans text-xs tracking-widest opacity-70">Qs. Ar-rum : 21</b>
                 </p>
             </div>
-            <button onclick="bukaUndangan()" class="px-10 py-3 bg-white text-slate-900 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl active:scale-95 transition-all">
-                Lihat Detail Acara
+            <button onclick="bukaUndangan()" class="px-10 py-3 bg-white/20 border border-white text-white rounded-full font-bold text-[10px] tracking-widest uppercase backdrop-blur-md active:scale-95 transition-all hover:bg-white hover:text-slate-900" style="font-family: 'Montserrat', sans-serif;">
+                Buka Undangan
             </button>
         </div>
     </section>
 
-    <audio id="musik" loop><source src="]" type="audio/mpeg"></audio>
+    <audio id="musik" loop><source src="Di Akhir Perang -  Nadin Amizah _ Lirik Lagu.mp3" type="audio/mpeg"></audio>
 
     <main id="main-content" class="hidden max-w-md mx-auto bg-white shadow-2xl relative">
         
         <div class="h-[450px] relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+            <img src="monokrom.jpg" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent text-center flex flex-col justify-end pb-10">
-                <h2 class="font-aesthetic text-5xl text-slate-800" data-aos="fade-up">Bagus & Afi</h2>
+                <h2 class="font-latin text-6xl text-slate-800" data-aos="fade-up">Bagus & Afi</h2>
             </div>
         </div>
 
         <section class="p-8 text-center bg-white">
             <div class="mb-12" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400" class="w-24 h-24 mx-auto rounded-full border-4 border-slate-50 mb-4 shadow-md object-cover">
-                <h3 class="font-aesthetic text-3xl text-slate-700">Afiatul Afida</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-2 font-semibold">Putri dari Bapak Darto Zainal Arifin & Alm Ibu Solicha</p>
+                <img src="lik afi.jpg" class="w-28 h-28 mx-auto rounded-full border-4 border-slate-50 mb-4 shadow-md object-cover">
+                <h3 class="font-latin text-4xl text-slate-700">Afiatul Afida</h3>
+                <p class="text-xs text-slate-500 uppercase tracking-widest mt-3 font-semibold" style="font-family: 'Montserrat', sans-serif;">Putri dari Bapak Darto Zainal Arifin & Alm Ibu Solicha</p>
             </div>
-            <div class="font-aesthetic text-4xl text-slate-200 my-6" data-aos="zoom-in">&</div>
+            <div class="font-latin text-5xl text-slate-300 my-6" data-aos="zoom-in">&</div>
             <div class="mb-12" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400" class="w-24 h-24 mx-auto rounded-full border-4 border-slate-50 mb-4 shadow-md object-cover">
-                <h3 class="font-aesthetic text-3xl text-slate-700">Bagus Pengestu Wicaksono</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-2 font-semibold">Putra dari Bapak Solikhin & Ibu Badriyah</p>
+                <img src="mas bagus.jpg" class="w-28 h-28 mx-auto rounded-full border-4 border-slate-50 mb-4 shadow-md object-cover">
+                <h3 class="font-latin text-4xl text-slate-700">Bagus Pangestu Wicaksono</h3>
+                <p class="text-xs text-slate-500 uppercase tracking-widest mt-3 font-semibold" style="font-family: 'Montserrat', sans-serif;">Putra dari Bapak Solikhin & Ibu Badriyah</p>
             </div>
         </section>
 
-        <section class="relative p-12 text-white text-center bg-cover bg-fixed bg-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80');">
-            <h3 class="text-[10px] tracking-[0.4em] mb-10 uppercase opacity-70" data-aos="fade-down">Menuju Hari Bahagia</h3>
-            <div id="countdown" class="flex justify-center gap-5 mb-10" data-aos="zoom-in">
+        <section class="relative p-12 text-white text-center bg-cover bg-center" 
+                style="background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('DSC00029.jpg'); background-attachment: scroll; background-size: cover;">
+            
+            <h3 class="text-[10px] tracking-[0.4em] mb-10 uppercase opacity-70" data-aos="fade-down" style="font-family: 'Montserrat', sans-serif;">Menuju Hari Bahagia</h3>
+            
+            <div id="countdown" class="flex justify-center gap-6 mb-10" data-aos="zoom-in">
                 <div><span id="days" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Hari</p></div>
                 <div><span id="hours" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Jam</p></div>
                 <div><span id="minutes" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Menit</p></div>
                 <div><span id="seconds" class="text-3xl font-bold">00</span><p class="text-[9px] opacity-60 uppercase">Detik</p></div>
             </div>
-            <button class="px-8 py-3 bg-white text-slate-900 rounded-full text-[9px] font-bold tracking-widest uppercase shadow-xl" data-aos="fade-up">Save The Date</button>
+            
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+NamaMempelai&dates=20260613T040000Z/20260613T100000Z&details=Mohon+doa+restu+atas+pernikahan+kami.&location=Linggapura+RT+01/RW+03,+Tonjong,+Brebes&sf=true&output=xml" 
+            target="_blank"
+            class="inline-block px-8 py-3 bg-white text-slate-900 rounded-full text-[9px] font-bold tracking-widest uppercase shadow-xl hover:bg-slate-200 transition-all" 
+            data-aos="fade-up" 
+            style="font-family: 'Montserrat', sans-serif;">
+            Save The Date
+            </a>
         </section>
 
         <section class="p-8 bg-white">
             <div class="space-y-6">
                 <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 text-center shadow-sm" data-aos="fade-right">
-                    <div class="w-12 h-12 bg-slate-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-12 h-12 bg-slate-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <i class="fas fa-ring"></i>
                     </div>
-                    <h3 class="font-aesthetic text-4xl text-slate-800 mb-2">Akad Nikah</h3>
-                    <div class="text-[11px] tracking-widest uppercase font-bold text-slate-400 mb-4">Sabtu, 13 Juni 2026</div>
+                    <h3 class="font-latin text-5xl text-slate-800 mb-2">Akad Nikah</h3>
+                    <div class="text-[11px] tracking-widest uppercase font-bold text-slate-400 mb-4" style="font-family: 'Montserrat', sans-serif;">Sabtu, 13 Juni 2026</div>
                     
                     <div class="space-y-2 text-slate-600">
-                        <p class="text-xs font-semibold"><i class="far fa-clock mr-2"></i> 09.00 - 10.00 WIB</p>
-                        <p class="text-xs leading-relaxed px-4">
-                            <i class="fas fa-map-marker-alt mr-2"></i>Kediaman Mempelai Wanita<br>
-                            Linggapura RT 01/RW 03 Kelurahan Linggapura, Kecamatan Tonjong, Kabupaten Brebes, No 40
+                        <p class="text-sm font-semibold"><i class="far fa-clock mr-2"></i> 09.00 - Selesai</p>
+                        <p class="text-sm leading-relaxed px-4">
+                            <i class="fas fa-map-marker-alt mr-2 text-red-400"></i><b>Kediaman Mempelai Wanita</b><br>
+                            Linggapura RT 01/RW 03, Tonjong, Brebes
                         </p>
                     </div>
-                    
-                    <a href="https://maps.app.goo.gl/4ogLxmPqq3pGLiuR9?g_st=iw" target="_blank" class="inline-block mt-6 px-6 py-2 border border-slate-800 text-slate-800 rounded-full text-[9px] font-bold uppercase tracking-widest hover:bg-slate-800 hover:text-white transition-all">
-                        Google Maps
-                    </a>
+                    <a href="https://maps.google.com/?q=Linggapura+Tonjong+Brebes" class="inline-block mt-6 px-6 py-2 border border-slate-800 text-slate-800 rounded-full text-[9px] font-bold uppercase tracking-widest hover:bg-slate-800 hover:text-white transition-all" style="font-family: 'Montserrat', sans-serif;">Buka Lokasi</a>
                 </div>
 
                 <div class="bg-slate-800 p-8 rounded-[2.5rem] text-center shadow-xl text-white" data-aos="fade-left">
-                    <div class="w-12 h-12 bg-white text-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-utensils"></i>
+                    <div class="w-12 h-12 bg-white text-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-glass-cheers"></i>
                     </div>
-                    <h3 class="font-aesthetic text-4xl mb-2">Resepsi</h3>
-                    <div class="text-[11px] tracking-widest uppercase font-bold opacity-60 mb-4">Sabtu, 13 Juni 2026</div>
+                    
+                    <h3 class="font-latin text-5xl mb-2">Resepsi</h3>
+                    <div class="text-[11px] tracking-widest uppercase font-bold opacity-60 mb-4" style="font-family: 'Montserrat', sans-serif;">Sabtu, 13 Juni 2026</div>
                     
                     <div class="space-y-2 opacity-90">
-                        <p class="text-xs font-semibold"><i class="far fa-clock mr-2"></i> 11.00 - Selesai</p>
-                        <p class="text-xs leading-relaxed px-4">
-                            <i class="fas fa-map-marker-alt mr-2"></i>Kediaman Mempelai Wanita<br>
-                            Linggapura RT 01/RW 03 Kelurahan Linggapura, Kecamatan Tonjong, Kabupaten Brebes, No 40
+                        <p class="text-sm font-semibold"><i class="far fa-clock mr-2"></i> 12.00 - Selesai</p>
+                        <p class="text-sm leading-relaxed px-4">
+                            <i class="fas fa-map-marker-alt mr-2 text-amber-200"></i><b>Kediaman Mempelai Wanita</b><br>
+                            Linggapura RT 01/RW 03, Tonjong, Brebes
                         </p>
                     </div>
-
-                    <a href="https://maps.app.goo.gl/4ogLxmPqq3pGLiuR9?g_st=iw" target="_blank" class="inline-block mt-6 px-6 py-2 bg-white text-slate-800 rounded-full text-[9px] font-bold uppercase tracking-widest hover:bg-slate-200 transition-all">
-                        Google Maps
-                    </a>
+                    
+                    <a href="https://maps.google.com/?q=Linggapura+Tonjong+Brebes" target="_blank" class="inline-block mt-6 px-6 py-2 bg-white text-slate-800 rounded-full text-[9px] font-bold uppercase tracking-widest hover:bg-slate-200 transition-all" style="font-family: 'Montserrat', sans-serif;">Buka Lokasi</a>
                 </div>
             </div>
         </section>
 
-        <section class="p-5">
-            <h3 class="font-aesthetic text-4xl text-center mb-8" data-aos="fade-up">Our Gallery</h3>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="overflow-hidden rounded-xl shadow-sm" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400" 
-                         class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-sm" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400" 
-                         class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-sm col-span-2" data-aos="zoom-in" data-aos-delay="450">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800" 
-                         class="w-full h-56 object-cover cursor-pointer hover:scale-105 transition duration-700" onclick="zoomImg(this.src)">
-                </div>
-            </div>
-        </section>
-
-        <section class="relative p-16 text-center text-white bg-cover bg-fixed bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800');">
-            <h3 class="font-aesthetic text-4xl mb-4" data-aos="fade-up">Wedding Gift</h3>
-            <p class="text-[10px] mb-8 leading-relaxed italic opacity-80 px-4" data-aos="fade-up">"Bagi yang ingin memberikan tanda kasih, dapat mengirimkan melalui fitur di bawah ini:"</p>
-            <button onclick="toggleGift()" class="px-10 py-4 bg-white text-slate-900 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl active:scale-95 transition-all" data-aos="zoom-in">Kirim Hadiah</button>
-        </section>
-
-        <section class="relative p-8 bg-cover bg-fixed bg-center min-h-screen" style="background-image: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800');">
-            <h3 class="font-aesthetic text-4xl text-center mb-4" data-aos="fade-up">Buku Tamu</h3>
-            <p class="text-[10px] text-center mb-10 italic text-slate-500 px-6" data-aos="fade-up">"Diharapkan Bapak/Ibu/Saudara/i untuk mengisi form yang ada dibawah ini:"</p>
+        <section class="p-5 overflow-hidden bg-white">
+            <h3 class="font-latin text-6xl text-center mb-10" data-aos="fade-down" data-aos-duration="1200">Our Gallery</h3>
             
-            <form id="form-undangan" class="space-y-4 mb-12 bg-white/60 p-6 rounded-[2rem] border border-white shadow-sm" data-aos="fade-up">
-                <input type="text" id="input-nama-otomatis" name="Nama" required placeholder="Nama Anda" class="w-full px-5 py-3 rounded-2xl border-none shadow-inner text-xs bg-white/80 focus:ring-2 focus:ring-slate-300">
-                <select name="Kehadiran" class="w-full px-5 py-3 rounded-2xl border-none shadow-inner text-xs bg-white/80">
+            <div class="grid grid-cols-2 gap-4">
+                
+                <div class="overflow-hidden rounded-2xl shadow-sm h-80" 
+                    data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                    <img src="DSC00029.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-sm h-80" 
+                    data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+                    <img src="DSC00156.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-sm col-span-2 h-[500px]" 
+                    data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">
+                    <img src="new.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-700" onclick="zoomImg(this.src)">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-sm h-80" 
+                    data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                    <img src="DSC00195.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <div class="overflow-hidden rounded-2xl shadow-sm h-[154px]" 
+                        data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+                        <img src="DSC00055.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-sm h-[154px]" 
+                        data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000">
+                        <img src="DSC00264.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onclick="zoomImg(this.src)">
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-sm col-span-2 h-72" 
+                    data-aos="flip-up" data-aos-delay="100" data-aos-duration="1000">
+                    <img src="DSC00416.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-700" onclick="zoomImg(this.src)">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl shadow-sm col-span-2 h-[450px]" 
+                    data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">
+                    <img src="monokrom.jpg" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-700" onclick="zoomImg(this.src)">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="relative p-16 text-center text-white bg-cover bg-center" 
+                style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('DSC00416.jpg'); background-attachment: scroll;">
+            
+            <h3 class="font-latin text-5xl mb-4" data-aos="fade-up">Wedding Gift</h3>
+            
+            <p class="text-sm mb-8 italic opacity-80 px-4" data-aos="fade-up">
+                "Bagi yang ingin memberikan tanda kasih, dapat mengirimkan melalui fitur di bawah ini:"
+            </p>
+            
+            <button onclick="toggleGift()" class="px-10 py-4 bg-white text-slate-900 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl active:scale-95 transition-all" data-aos="zoom-in" style="font-family: 'Montserrat', sans-serif;">
+                Kirim Hadiah
+            </button>
+        </section>
+
+        <section class="relative p-8 bg-slate-50 min-h-screen">
+            <h3 class="font-latin text-6xl text-center mb-4" data-aos="fade-up">Buku Tamu</h3>
+            <p class="text-xs text-center mb-10 italic text-slate-500 px-6" data-aos="fade-up">"Diharapkan Bapak/Ibu/Saudara/i untuk mengisi form yang ada dibawah ini:"</p>
+            
+            <form id="form-undangan" class="space-y-4 mb-12 bg-white p-6 rounded-[2rem] shadow-xl" data-aos="fade-up">
+                <input type="text" id="input-nama-otomatis" name="Nama" required placeholder="Nama Anda" class="w-full px-5 py-3 rounded-2xl border border-slate-100 shadow-inner text-sm focus:ring-2 focus:ring-slate-300 outline-none">
+                <select name="Kehadiran" class="w-full px-5 py-3 rounded-2xl border border-slate-100 shadow-inner text-sm outline-none">
                     <option value="Hadir">Hadir</option>
                     <option value="Tidak Hadir">Tidak Hadir</option>
                 </select>
-                <textarea name="Ucapan" required placeholder="Ucapan & Doa..." rows="4" class="w-full px-5 py-3 rounded-2xl border-none shadow-inner text-xs bg-white/80 focus:ring-2 focus:ring-slate-300"></textarea>
-                <button type="submit" id="submit-btn" class="w-full py-4 bg-slate-800 text-white rounded-full font-bold text-[10px] tracking-widest uppercase shadow-lg active:scale-95 transition-transform">Kirim Ucapan</button>
+                <textarea name="Ucapan" required placeholder="Ucapan & Doa..." rows="4" class="w-full px-5 py-3 rounded-2xl border border-slate-100 shadow-inner text-sm outline-none focus:ring-2 focus:ring-slate-300"></textarea>
+                <button type="submit" id="submit-btn" class="w-full py-4 bg-slate-800 text-white rounded-full font-bold text-[10px] tracking-widest uppercase shadow-lg active:scale-95 transition-transform" style="font-family: 'Montserrat', sans-serif;">Kirim Ucapan</button>
             </form>
 
             <div id="display-ucapan" class="space-y-4 max-h-[450px] overflow-y-auto pr-2 pb-12">
-                <p class="text-center text-[10px] text-slate-400 italic">Memuat ucapan...</p>
+                <p class="text-center text-xs text-slate-400 italic">Memuat ucapan...</p>
             </div>
         </section>
 
-        <footer class="p-12 text-center bg-white border-t border-slate-100">
-            <p class="text-[10px] text-slate-400 italic mb-8 leading-relaxed px-4">
-                Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do’a restu kepada kami.
-            </p>
-            <h4 class="font-aesthetic text-4xl text-slate-800 mb-10">Bagus & Afi</h4>
-            <div class="mt-8 pt-8 border-t border-slate-50 text-slate-400">
-                <p class="text-[8px] uppercase tracking-widest mb-4 italic">Created by Mohammad Rifqi Ramadhan</p>
-                <div class="flex justify-center gap-6">
-                    <a href="https://instagram.com/iqii_22" target="_blank" class="hover:text-pink-500 transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    
-                    <a href="https://wa.me/6281328513233" target="_blank" class="hover:text-green-500 transition-colors">
-                        <i class="fab fa-whatsapp text-xl"></i>
-                    </a>
-                </div>
+        <footer class="relative p-12 text-center text-white bg-slate-900 overflow-hidden min-h-[600px] flex items-center justify-center">
+    
+            <img src="monokrom.jpg" alt="Footer Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="smoke-layer smoke-1"></div>
+                <div class="smoke-layer smoke-2"></div>
             </div>
+
+            <div class="relative z-10 w-full">
+                <p class="text-xs text-amber-100 italic mb-10 leading-relaxed px-4 opacity-90">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do’a restu kepada kami.
+                </p>
+                
+                <p class="text-[10px] tracking-widest uppercase mb-3 opacity-60 text-white" style="font-family: 'Montserrat', sans-serif;">
+                    Kami yang berbahagia,
+                </p>
+                
+                <div class="space-y-2 mb-20">
+                    <h4 class="font-latin text-7xl text-amber-200 latin-shadow">Bagus</h4>
+                    <h4 class="font-latin text-5xl text-amber-100 opacity-50">&</h4>
+                    <h4 class="font-latin text-7xl text-amber-200 latin-shadow">Afi</h4>
+                </div>
+                
+                <div class="mt-32">
+                    <div class="w-16 h-px bg-white/10 mx-auto mb-8"></div>
+                    <div class="text-slate-400 space-y-6">
+                        <p class="text-[8px] uppercase tracking-[0.3em] italic opacity-40" style="font-family: 'Montserrat', sans-serif;">
+                            Created by Mohammad Rifqi Ramadhan
+                        </p>
+                        
+                        <div class="flex justify-center gap-10 items-center">
+                            <a href="https://instagram.com/iqii_22" target="_blank" class="hover:text-pink-400 transition-all active:scale-90">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                            <a href="https://wa.me/6281328513233" target="_blank" class="hover:text-green-400 transition-all active:scale-90">
+                                <i class="fab fa-whatsapp text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <style>
+                .smoke-layer {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 200%;
+                    height: 100%;
+                    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Pola dasar asap */
+                    background-size: contain;
+                    opacity: 0.3;
+                    filter: blur(20px);
+                }
+                
+                /* Animasi asap bergerak */
+                .smoke-1 {
+                    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+                    animation: smokeMove 20s linear infinite;
+                }
+                
+                .smoke-2 {
+                    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%);
+                    animation: smokeMove 15s linear reverse infinite;
+                    opacity: 0.2;
+                }
+
+                @keyframes smokeMove {
+                    0% { transform: translateX(0) translateY(0) scale(1); }
+                    50% { transform: translateX(-10%) translateY(-5%) scale(1.1); }
+                    100% { transform: translateX(0) translateY(0) scale(1); }
+                }
+
+                .latin-shadow {
+                    text-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
+                }
+            </style>
         </footer>
     </main>
 
-    <div id="gift-modal" class="hidden fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-6" onclick="toggleGift()">
-        <div class="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center relative shadow-2xl" onclick="event.stopPropagation()">
-            <h4 class="font-bold text-slate-800 mb-6 uppercase text-[10px] tracking-widest">Digital Gift</h4>
-            <div class="bg-slate-50 p-6 rounded-3xl mb-6 border border-slate-100">
-                <p class="text-[9px] font-bold text-slate-400 uppercase mb-2">Bank BRI</p>
-                <p class="text-lg font-bold tracking-widest">660301036433538</p>
-                <p class="text-[10px] text-slate-500">a.n Afiatul Afida</p>
-                <button onclick="copyNorek()" class="mt-4 text-[9px] text-blue-500 font-bold uppercase tracking-widest border-b border-blue-100">Salin No. Rekening</button>
-            </div>
-            <div class="bg-slate-50 p-6 rounded-3xl mb-6 border border-slate-100">
-                <p class="text-[9px] font-bold text-slate-400 uppercase mb-2">Bank SeaBank</p>
-                <p class="text-lg font-bold tracking-widest">901480773674</p>
-                <p class="text-[10px] text-slate-500">a.n Bagus Pangestu</p>
-                <button onclick="copyNorek()" class="mt-4 text-[9px] text-blue-500 font-bold uppercase tracking-widest border-b border-blue-100">Salin No. Rekening</button>
-            </div>
-            <button onclick="toggleGift()" class="w-full py-4 bg-slate-100 text-slate-500 rounded-full text-[9px] font-bold uppercase tracking-widest">Tutup</button>
-        </div>
+    <div id="gift-modal" class="hidden fixed inset-0 z-[200] bg-black/80 flex items-center justify-center p-6" onclick="toggleGift()">
+    <div class="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center relative shadow-2xl" onclick="event.stopPropagation()">
+        <h4 class="font-bold text-slate-800 mb-8 uppercase text-[11px] tracking-widest" style="font-family: 'Montserrat', sans-serif;">Digital Gift</h4>
+        
+        <div class="relative rounded-3xl mb-8 p-6 overflow-hidden shadow-inner border border-slate-100 bg-slate-900 text-white min-h-[300px] flex flex-col justify-center">
+            
+            <img src="DSC00416.jpg" alt="Background Gift" class="absolute inset-0 w-full h-full object-cover opacity-40">
+
+            <div class="relative z-10 space-y-6">
+                
+                <div class="border-b border-white/20 pb-6">
+                    <p class="text-[10px] font-bold text-amber-200 uppercase tracking-wider mb-2" style="font-family: 'Montserrat', sans-serif;">Bank BRI</p>
+                    <p id="norek-bri" class="text-xl font-bold tracking-widest mb-1">660301036433538</p>
+                    <p class="text-xs italic opacity-80 mb-3">a.n Afiatul Afida</p>
+                    
+                    <button onclick="salinNomer('660301036433538', 'BRI')" class="inline-flex items-center gap-2 px-5 py-1.5 bg-white/20 border border-white/30 text-white rounded-full text-[9px] font-bold uppercase tracking-widest active:scale-95 transition-all backdrop-blur-sm hover:bg-white hover:text-slate-900">
+                        <i class="far fa-copy text-xs"></i>
+                        Salin Nomer
+                    </button>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-bold text-amber-200 uppercase tracking-wider mb-2" style="font-family: 'Montserrat', sans-serif;">Bank SeaBank</p>
+                    <p id="norek-seabank" class="text-xl font-bold tracking-widest mb-1">901480773674</p>
+                    <p class="text-xs italic opacity-80 mb-3">a.n Bagus Pangestu</p>
+                    
+                    <button onclick="salinNomer('901480773674', 'SeaBank')" class="inline-flex items-center gap-2 px-5 py-1.5 bg-white/20 border border-white/30 text-white rounded-full text-[9px] font-bold uppercase tracking-widest active:scale-95 transition-all backdrop-blur-sm hover:bg-white hover:text-slate-900">
+                        <i class="far fa-copy text-xs"></i>
+                        Salin Nomer
+                    </button>
+                </div>
+
+            </div> </div> <button onclick="toggleGift()" class="w-full py-4 bg-slate-100 text-slate-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-slate-200 transition-colors">
+            Tutup
+        </button>
     </div>
+</div>
 
     <div id="image-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
         <div class="close-zoom" onclick="closeZoom()">✕</div>
@@ -212,130 +345,137 @@
         <img id="zoomed-img" src="" class="relative z-10 max-w-full max-h-[85vh] rounded-2xl shadow-2xl transition-transform duration-300 scale-95">
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // URL Apps Script kamu (Sudah update dari URL terakhir)
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyrSpzSyhujOmhGtNqiDvRJA17OkiE2Z8gLAw0wh7etb-Z4E6PL7FGEvJOaiAaMWmR8/exec';
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    // URL Apps Script kamu
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyrSpzSyhujOmhGtNqiDvRJA17OkiE2Z8gLAw0wh7etb-Z4E6PL7FGEvJOaiAaMWmR8/exec';
+    
+    // Inisialisasi AOS
+    AOS.init({ duration: 1000, once: true });
+
+    function bukaUndangan() {
+        document.getElementById('cover').classList.add('cover-hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+        document.getElementById('main-body').style.overflow = 'auto';
         
-        AOS.init({ duration: 1000, once: true });
+        document.getElementById('musik').play().catch(() => {});
+        
+        // KUNCINYA DI SINI: Kasih delay dikit biar browser render dulu, baru AOS scan
+        setTimeout(() => { 
+            AOS.refresh(); 
+            window.dispatchEvent(new Event('scroll')); // Maksa pemicu animasi jalan
+            loadComments(); 
+        }, 500); 
+    }
 
-        function bukaUndangan() {
-            document.getElementById('cover').classList.add('cover-hidden');
-            document.getElementById('main-content').classList.remove('hidden');
-            document.getElementById('main-body').style.overflow = 'auto';
-            document.getElementById('musik').play().catch(() => console.log("Autoplay blocked"));
-            setTimeout(() => { 
-                AOS.refresh(); 
-                loadComments(); // Tarik data dari Google Sheets
-            }, 100);
-        }
+    // 1. FUNGSI SALIN NOMER (TRIK SAKTI JALAN DI HP)
+    function salinNomer(nomernya, namaBanknya) {
+        const tempInput = document.createElement("input");
+        tempInput.value = nomernya;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // Untuk mobile
 
-        // LOAD COMMENTS (DARI GOOGLE SHEETS)
-        function loadComments() {
-            const display = document.getElementById('display-ucapan');
-            fetch(scriptURL + '?action=read')
-            .then(res => res.json())
-            .then(data => {
-                display.innerHTML = '';
-                if(data.length === 0) {
-                    display.innerHTML = '<p class="text-center text-[10px] text-slate-400 italic">Belum ada ucapan.</p>';
-                    return;
-                }
-                data.reverse().forEach(row => {
-                    if(!row.Nama || !row.Ucapan) return;
-                    const html = `
-                        <div class="bg-white/90 p-6 rounded-[1.5rem] shadow-sm border border-white" data-aos="fade-up">
-                            <p class="font-bold text-[10px] text-slate-800 uppercase tracking-widest">${row.Nama} <span class="font-normal text-slate-400 font-sans"> - ${row.Kehadiran}</span></p>
-                            <p class="text-xs text-slate-600 mt-2 italic">"${row.Ucapan}"</p>
-                            <div class="mt-4"><button class="text-[9px] text-blue-500 font-bold uppercase tracking-widest" onclick="this.parentElement.nextElementSibling.classList.toggle('hidden')">Balas</button></div>
-                            <div class="hidden mt-3 pl-4 border-l-2 border-slate-100">
-                                <input type="text" placeholder="Tulis balasan..." class="w-full text-[10px] bg-slate-50 border-none rounded-xl py-2 px-3">
-                            </div>
-                        </div>`;
-                    display.insertAdjacentHTML('beforeend', html);
-                });
-            })
-            .catch(() => {
-                display.innerHTML = '<p class="text-center text-[10px] text-red-400 italic">Gagal memuat ucapan.</p>';
-            });
-        }
-
-        // SUBMIT FORM (SIMPAN KE GOOGLE SHEETS)
-        document.getElementById('form-undangan').addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const form = e.target;
-            
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...';
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(res => {
-                // Notifikasi Sukses pake SweetAlert
+        try {
+            const BerhasilDisalin = document.execCommand('copy');
+            if (BerhasilDisalin) {
                 Swal.fire({
-                    title: 'Terima Kasih!',
-                    text: 'Ucapan & doa Anda telah kami terima.',
+                    title: 'Berhasil Disalin!',
+                    text: 'Nomor ' + namaBanknya + ' tersalin ke clipboard.',
                     icon: 'success',
-                    confirmButtonColor: '#1e293b', // Warna Slate-800
-                    confirmButtonText: 'Oke'
-                });
-
-                form.reset(); // Kosongkan input form
-                btn.disabled = false;
-                btn.innerText = "Kirim Ucapan";
-                
-                // Muat ulang daftar ucapan saja tanpa reload halaman
-                loadComments(); 
-            })
-            .catch((error) => {
-                Swal.fire({
-                    title: 'Oops!',
-                    text: 'Terjadi kesalahan saat mengirim data.',
-                    icon: 'error',
+                    timer: 2000,
+                    showConfirmButton: false,
                     confirmButtonColor: '#1e293b'
                 });
-                btn.disabled = false;
-                btn.innerText = "Kirim Ucapan";
-                console.error('Error!', error.message);
+            }
+        } catch (err) {
+            alert('Gagal menyalin nomer, silakan catat manual: ' + nomernya);
+        }
+        document.body.removeChild(tempInput);
+    }
+
+    // 2. LOAD COMMENTS DARI GOOGLE SHEETS
+    function loadComments() {
+        const display = document.getElementById('display-ucapan');
+        fetch(scriptURL + '?action=read')
+        .then(res => res.json())
+        .then(data => {
+            display.innerHTML = '';
+            if(data.length === 0) {
+                display.innerHTML = '<p class="text-center text-xs text-slate-400 italic">Belum ada ucapan.</p>';
+                return;
+            }
+            data.reverse().forEach(row => {
+                const html = `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100" data-aos="fade-up">
+                        <p class="font-bold text-[10px] text-slate-800 uppercase tracking-widest" style="font-family: 'Montserrat', sans-serif;">${row.Nama} <span class="font-normal text-slate-400"> - ${row.Kehadiran}</span></p>
+                        <p class="text-sm text-slate-600 mt-2 italic leading-relaxed">"${row.Ucapan}"</p>
+                    </div>`;
+                display.insertAdjacentHTML('beforeend', html);
             });
+        })
+        .catch(() => { 
+            display.innerHTML = '<p class="text-center text-xs text-red-400">Gagal memuat ucapan.</p>'; 
         });
+    }
 
-        // COUNTDOWN
-        const weddingDate = new Date("June 13, 2026 09:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const gap = weddingDate - now;
-            if(gap < 0) return;
-            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000);
-        }, 1000);
+    // 3. FORM SUBMIT
+    document.getElementById('form-undangan').addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(e.target)})
+        .then(() => {
+            Swal.fire({ title: 'Terima Kasih!', text: 'Ucapan Anda telah terkirim.', icon: 'success', confirmButtonColor: '#1e293b' });
+            e.target.reset();
+            btn.disabled = false;
+            btn.innerText = "Kirim Ucapan";
+            loadComments();
+        })
+        .catch(() => {
+            btn.disabled = false;
+            btn.innerText = "Kirim Ucapan";
+            Swal.fire({ title: 'Oops!', text: 'Gagal mengirim ucapan.', icon: 'error' });
+        });
+    });
 
-        // UTILITIES
-        function zoomImg(src) {
-            const modal = document.getElementById('image-modal');
-            const img = document.getElementById('zoomed-img');
-            img.src = src;
-            modal.classList.remove('hidden');
-            setTimeout(() => { img.classList.replace('scale-95', 'scale-100'); }, 10);
-        }
-        function closeZoom() {
-            const modal = document.getElementById('image-modal');
-            const img = document.getElementById('zoomed-img');
-            img.classList.replace('scale-100', 'scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); }, 200);
-        }
-        function toggleGift() { document.getElementById('gift-modal').classList.toggle('hidden'); }
-        function copyNorek() {
-            navigator.clipboard.writeText("1234567890");
-            alert("Nomor rekening berhasil disalin!");
-        }
+    // 4. COUNTDOWN TIMER
+    const weddingDate = new Date("June 13, 2026 09:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const gap = weddingDate - now;
+        if(gap < 0) return;
+        document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+        document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById('minutes').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000);
+    }, 1000);
 
-        window.onload = () => {
-            const params = new URLSearchParams(window.location.search);
-            document.getElementById('input-nama-otomatis').value = params.get('to') || 'Tamu Undangan';
-        };
-    </script>
+    // 5. UTILS (ZOOM & GIFT)
+    function zoomImg(src) {
+        const modal = document.getElementById('image-modal');
+        const img = document.getElementById('zoomed-img');
+        img.src = src;
+        modal.classList.remove('hidden');
+        setTimeout(() => { img.classList.replace('scale-95', 'scale-100'); }, 10);
+    }
+    function closeZoom() {
+        const modal = document.getElementById('image-modal');
+        const img = document.getElementById('zoomed-img');
+        img.classList.replace('scale-100', 'scale-95');
+        setTimeout(() => { modal.classList.add('hidden'); }, 200);
+    }
+    function toggleGift() { 
+        document.getElementById('gift-modal').classList.toggle('hidden'); 
+    }
+
+    // Ambil nama dari URL (untuk nama tamu otomatis)
+    window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('input-nama-otomatis').value = params.get('to') || 'Tamu Undangan';
+    };
+</script>
 </body>
 </html>
