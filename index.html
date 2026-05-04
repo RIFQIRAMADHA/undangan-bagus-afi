@@ -377,6 +377,22 @@
         }, 500); 
     }
 
+    window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        const namaTamu = params.get('to');
+
+        if (namaTamu) {
+            // 1. Tampilkan nama di Cover
+            document.getElementById('nama-tamu-cover').innerText = namaTamu;
+            
+            // 2. Isi nama otomatis di Form Buku Tamu
+            const inputNama = document.getElementById('input-nama-otomatis');
+            if (inputNama) {
+                inputNama.value = namaTamu;
+            }
+        }
+    };
+
     // 1. FUNGSI SALIN NOMER (TRIK SAKTI JALAN DI HP)
     function salinNomer(nomernya, namaBanknya) {
         const tempInput = document.createElement("input");
